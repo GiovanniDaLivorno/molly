@@ -1,14 +1,12 @@
-# === Dockerfile for Molly ===
-# Builds a container image that prefetches ollama models for faster startup.
-#
+# === Molly Dockerfile ===
 
 FROM ollama/ollama
 
 # Add metadata to the image.
-LABEL org.opencontainers.image.authors="Gio <gio@example.com>"
+LABEL org.opencontainers.image.authors="giod <giovanni.mumolo@yahoo.com>"
 
 # Start ollama in background so models are pulled during image build.
-# The sleep is a simple workaround to give the server time to initialize.
+# The sleep is a workaround to give the server time to initialize.
 RUN ollama serve & \
     sleep 5 && \
     ollama pull nomic-embed-text && \

@@ -1,0 +1,4 @@
+ollama
+chromadb
+tree-sitter
+tiktoken
