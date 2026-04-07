@@ -11,6 +11,7 @@ start working in three steps
 
 ## 1 build molly docker image 
 
+create an image for your host machine's CPU architecture
 ```
 docker build -t molly .
 ```
@@ -69,3 +70,33 @@ docker build -t molly .
   docker commit ollama molly
   docker images
   ```
+  
+## Bonus: create an image for a specific CPU architecture
+
+to create an images for a CPU architecture different from the one you are running docker on you need to use Docker Buildx.
+Here the instruction are for building a ARM64 image on a x86_64 docker host
+
+
+- enable QEMU emulation
+  ```
+  docker run --rm --privileged tonistiigi/binfmt --install all
+  ```
+
+- create a buildx builder and start it
+  ```
+  docker buildx create --use --name molly-builder
+  docker buildx inspect --bootstrap
+  ```
+
+- then build the ARM64 image
+- ARM CPU architecture 
+  ```
+  docker buildx build --platform linux/arm64 -t molly:arm64 --load .
+  ```
+
+- If you want a single multi-architecture image pushed to a registry instead of local images:
+
+```
+docker buildx build --platform linux/amd64,linux/arm64 -t <your-dockerhub-user>/molly:latest --push .
+```
+
