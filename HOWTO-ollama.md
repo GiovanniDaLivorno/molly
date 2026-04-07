@@ -9,7 +9,7 @@ How to quckly start with Ollama on Rasberry pi5. the projects is tested on this 
 ## start ollama
 this start ollama without GPU support, CPU only
   ```
-  sudo docker run -d -v ollama:/root/.ollama -p 11434:11434 --name molly ollama/ollama
+  sudo docker run -d -v ollama:/home/gio/.ollama -p 11434:11434 --name molly ollama/ollama
   ```
 
 ## load models

@@ -12,12 +12,12 @@ start working in three steps
 ## 1 build molly docker image 
 
 ```
- docker build -t molly
+docker build -t molly .
 ```
 
 ## 2 run it
 ```
-  sudo docker run -d -v ollama:/root/.ollama -p 11434:11434 --name molly molly:latest
+  sudo docker run -d -v ollama:/home/gio/.ollama -p 11434:11434 --name molly molly:latest
 ```
 
 ## 3 test if it work
