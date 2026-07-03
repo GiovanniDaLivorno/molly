@@ -18,19 +18,19 @@ docker build -t molly .
 
 ## 2 run it
 ```
-  sudo docker run -d -v ollama:/home/gio/.ollama -p 11434:11434 --name molly molly:latest
+  docker run -d -v molly:/home/giod/.ollama -p 11434:11434 --name molly molly:latest
 ```
 
 ## 3 test if it work
 - get models list
-   - from molly container or
+   - from molly container
      ```
      sudo docker exec -it molly bash
      ollama ls
      exit
      ```
 
-   - from your docker host
+   - or from your docker host browser
      ```
      http://localhost:11434/api/tags
      ```
