@@ -7,7 +7,7 @@ Configurations are optimzed and tested on
 - Docker 29.3.0
 - containerd.io 2.2.2.1
 
-start working in three steps 
+start in three steps 
 
 ## 1 build molly docker image 
 
@@ -17,36 +17,36 @@ docker build -t molly .
 ```
 
 ## 2 run it
+run exposing on port 10000
 ```
-  docker run -d -v molly:/home/giod/.ollama -p 11434:11434 --name molly molly:latest
+  docker run -d -v molly:/home/giod/.ollama -p 10000:11434 --name molly molly:latest
 ```
 
 ## 3 test if it work
-- get models list
-   - from molly container
+- get models list from your docker host browser
+     ```
+     http://localhost:10000/api/tags
+     ```
+
+- or connecting directly to molly container
      ```
      sudo docker exec -it molly bash
      ollama ls
      exit
      ```
 
-   - or from your docker host browser
-     ```
-     http://localhost:11434/api/tags
-     ```
-
 - check if LLM respond
   ```
-  curl http://localhost:11434/api/generate -X POST -H "Content-Type: application/json" \
+  curl http://localhost:10000/api/generate -X POST -H "Content-Type: application/json" \
     -d '{
          "model": "qwen2.5-coder:0.5b",
          "prompt": "Ciao",
          "stream": false
       }'
   ```
- - check if embedder works
+ - and if embedder works
    ```
-   curl http://localhost:11434/api/embeddings   -d '{
+   curl http://localhost:10000/api/embeddings   -d '{
     "model": "nomic-embed-text",
     "prompt": "The quick brown fox jumps over the lazy dog"
     }'
@@ -56,7 +56,7 @@ docker build -t molly .
 
 - start ollama without GPU (CPU only)
   ```
-  sudo docker run -d -v ollama:/root/.ollama -p 11434:11434 --name molly ollama/ollama
+  sudo docker run -d -v ollama:/root/.ollama -p 10000:11434 --name molly ollama/ollama
   ```
 
 - load models (a small code LLM and an embedding model)

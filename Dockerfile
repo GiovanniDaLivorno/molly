@@ -8,7 +8,7 @@ LABEL org.opencontainers.image.authors="giod <giovanni.mumolo@yahoo.com>"
 # Create user 'giod'
 RUN useradd -m giod
 
-# Switch to user 'gio'
+# Switch to user 'giod'
 USER giod
 
 # Start ollama in background so models are pulled during image build.
